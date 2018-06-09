@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9E22712E20CC95E9001B6E18 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E22712D20CC95E9001B6E18 /* main.cpp */; };
-		9E22713620CC9600001B6E18 /* ShiftingClassMemberFunctionWithPointers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E22713420CC9600001B6E18 /* ShiftingClassMemberFunctionWithPointers.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,7 +25,6 @@
 /* Begin PBXFileReference section */
 		9E22712A20CC95E9001B6E18 /* EXAMPLE_ClassWithRemappableFunctionPointerMembers */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EXAMPLE_ClassWithRemappableFunctionPointerMembers; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E22712D20CC95E9001B6E18 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		9E22713420CC9600001B6E18 /* ShiftingClassMemberFunctionWithPointers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShiftingClassMemberFunctionWithPointers.cpp; sourceTree = "<group>"; };
 		9E22713520CC9600001B6E18 /* ShiftingClassMemberFunctionWithPointers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShiftingClassMemberFunctionWithPointers.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,7 +58,6 @@
 		9E22712C20CC95E9001B6E18 /* EXAMPLE_ClassWithRemappableFunctionPointerMembers */ = {
 			isa = PBXGroup;
 			children = (
-				9E22713420CC9600001B6E18 /* ShiftingClassMemberFunctionWithPointers.cpp */,
 				9E22713520CC9600001B6E18 /* ShiftingClassMemberFunctionWithPointers.h */,
 				9E22712D20CC95E9001B6E18 /* main.cpp */,
 			);
@@ -123,7 +120,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E22713620CC9600001B6E18 /* ShiftingClassMemberFunctionWithPointers.cpp in Sources */,
 				9E22712E20CC95E9001B6E18 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
