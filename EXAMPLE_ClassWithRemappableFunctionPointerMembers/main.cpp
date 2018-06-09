@@ -7,9 +7,21 @@
 //
 
 #include <iostream>
+#include "ShiftingClassMemberFunctionWithPointers.h"
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+   
+    std::cout << "\nRunning the ShiftingClassFunctionDefinitionWithMemberPointerFunctionsPointers...\n";
+    
+    std::unique_ptr<ShiftingClassMemberFunctionWithPointers> test = std::make_unique<ShiftingClassMemberFunctionWithPointers>();
+    
+    test->runTest();
+    test->disableSafetyChecking();
+    test->runTest();
+    test->enableSafetyChecking();
+    test->runTest();
+    
+    
+    
+    return EXIT_SUCCESS;
 }
