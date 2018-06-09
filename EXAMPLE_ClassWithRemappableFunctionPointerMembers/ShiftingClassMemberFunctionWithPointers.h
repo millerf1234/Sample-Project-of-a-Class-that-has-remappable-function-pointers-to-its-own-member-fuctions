@@ -10,14 +10,6 @@
 
 #include <iostream>
 
-//Prototypes for class and functions
-//class ShiftingClassMemberFunctionWithPointers;
-//void testFunction1();
-//void testFunction2();
-//void testFunction3();
-//void testFunction4();
-
-
 class ShiftingClassMemberFunctionWithPointers {
 private: //Fields
     bool useSafetyChecking;
@@ -45,7 +37,6 @@ public:
     ShiftingClassMemberFunctionWithPointers() {
         useSafetyChecking = true;
         remappableFunction1 = &ShiftingClassMemberFunctionWithPointers::testFunction1;
-        //remappableFunction1 = &ShiftingClassMemberFunctionWithPointers::testFunction3;
         remappableFunction2 = &ShiftingClassMemberFunctionWithPointers::testFunction2;
     }
     
@@ -55,7 +46,7 @@ public:
         std::cout << "Calling remappableFunction1()...";
         (this->*remappableFunction1)();
         std::cout << "Calling remappableFunction2()...";
-        //remappableFunction2();
+        (this->*remappableFunction2)();
     }
     
     void disableSafetyChecking() {
