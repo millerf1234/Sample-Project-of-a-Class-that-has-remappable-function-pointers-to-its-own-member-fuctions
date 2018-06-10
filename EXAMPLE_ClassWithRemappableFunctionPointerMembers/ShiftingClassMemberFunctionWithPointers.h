@@ -5,6 +5,8 @@
 ///SEE: https://stackoverflow.com/questions/47904088/called-object-type-void-bint-is-not-a-function-or-function-pointer?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
 ///This explanation helped it all make sense
 
+///IMPORTANT!!!  TO Make this code more readable, I really should be using typedefs. See: https://isocpp.org/wiki/faq/pointers-to-members#typedef-for-ptr-to-memfn
+
 #ifndef ShiftingClassMemberFunctionWithPointers_h
 #define ShiftingClassMemberFunctionWithPointers_h
 
@@ -14,6 +16,8 @@ class ShiftingClassMemberFunctionWithPointers {
 private: //Fields
     bool useSafetyChecking;
     
+    ///Test functions 1 and 2 will run when useSafetyChecking is turned on, and
+    ///Test functions 3 and 4 will run when useSafetyChecking is turned off.
     void testFunction1() {
         std::cout << "\nThis is test function 1 that was called! useSafetyChecking = " << useSafetyChecking << std::endl;
     }

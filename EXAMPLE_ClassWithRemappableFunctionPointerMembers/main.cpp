@@ -34,7 +34,7 @@ int main(int argc, const char * argv[]) {
     std::cout << "\n\nTest 2 -> runTest()";
     test2->runTest();
     
-    std::cout << "        Turning off safety check for test1...\n";
+    std::cout << "\n\n        Turning off safety check for test1...";
     test->disableSafetyChecking();
 std::cout << "\n\nTest 2 -> runTest()";
     test2->runTest();
