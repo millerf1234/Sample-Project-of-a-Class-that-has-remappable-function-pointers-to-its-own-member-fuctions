@@ -1,0 +1,17 @@
+  The purpose of this project is to experiment with implementing a C++ class that has
+public function pointers to its own private member functions. Based off the state of
+the object, the public function pointers can be remapped from amongst the private member
+functions so that the desired behavior is executed depending on the state of the object.
+
+  While the same resulting functionality for the class could have been implemented with just
+a single version of each remappable function where instead the implementation has them check
+the object's state and then select the approprite behavior, performing this check can incur a
+cost for a function that is called repeatedly. By using a class implemented with these
+remappable function pointers, the cost of selecting the correct behavior is transfered from
+being required as part of each function call to being only required once, reducing overhead.
+
+  NOTE: 
+To help with the readability of code within a class defining function pointers to class member
+functions, it is advised to use a typedef to simplify the function-pointer syntax. A quick 
+google search should provide numerous examples of this (and if I get time in the future I may
+consider adding a second example class which uses typedefs for the function pointers).
