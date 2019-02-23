@@ -199,11 +199,14 @@ consider adding a second example class which uses typedefs for the function poin
         The repository is titled "OpenGL_Windows_Projects". Once there, Open the folder titled "OpenGL_GLFW_Project". In that messy messy folder, 
         find the following 6 files: 
         
-                    - "ShaderProgram.h"  and "ShaderProgram.cpp"       This is the code that serves as the public interface for
-                                                                          a large amount of supporting code underneath. Notice however how
-                                                                          in the ShaderProgram class, there is a public member object of type
-                                                                          <UniformLocationInterface> (it should be right above the word 'private'
-                                                                             (and ya ya, I was still unfamiliar with the PIMPL idiom when I wrote this).
+                    - "ShaderProgram.h"  and "ShaderProgram.cpp"      
+                    
+                    Description of ShaderProgram:      This is the code that serves as the public interface for
+                                                         a large amount of supporting code underneath. Notice however how
+                                                         in the ShaderProgram class, there is a public member object of type
+                                                         <UniformLocationInterface> (it should be right above the word 'private'
+                                                                      (and ya ya, I know that is one whole metric heck of a lot of private functions...
+                                                                                    I was still unfamiliar with the PIMPL idiom when I wrote this).
                
                
                That will lead us to our next 2 files:
@@ -236,19 +239,25 @@ NING: RAW FUNCTION POINTERS! HAZMAT SUIT REQUIRED!]                          [WA
             ++-------------------------------------------------------------------------------++     
                  [WARNING: RAW FUNCTION POINTERS! HAZMAT SUIT REQUIRED!]                          [WARNING: RAW FUNCTION POINTERS! HAZMAT SUIT REQUIRED!] 
 
-                                                                                 These 2 files here are the stars of the show. If you have 
-                                                                                        the stomach for it, take this mirror and use it to take
-                                                                                        a look at that ".cpp" implementation file. 
+
+
+                 Description of UniformLocationInterface:    These 2 files here are the stars of the show. If you have 
+                                                               the stomach for it, then feel free to take one of these mirrors.
+                                                               It was recently determined that no one (not even C++ programmers) should
+                                                               be exposed to function pointers for any amount of time. Luckily we found
+                                                               a loop hole where you can still get a look at this ".cpp" implementation  
+                                                               file as long as you only see the file using the mirror. Best take a look now
+                                                               because this loophole could be closed any day now  [THANKS TO @#!% APPLE]                
                                                                                
-                                                                               BE WARNED TO NOT LOOK AT THE IMPLEMENTATION FILE DIRECTLY!
+                                                           REMEMBER: BE SURE TO NOT LOOK AT THE IMPLEMENTATION FILE DIRECTLY!
                                                                                       
-                                                                                     Perhaps no where else in the world would you possibly
-                                                                                        be able to witness such uncanny,
-                                                                                        jaw-dropingly majestical syntactical triple-backflips
-                                                                                        being performed in such incredible rapid succession
-                                                                                        within the ever-so-tiny enclosed confined space 
-                                                                                        in code in any language 
-                                                                                        whilest maintaining the perfect balance 
+                                                             Why this could be your last chance perhaps. No where else in the world would you possibly
+                                                               be able to witness such uncanny, jaw-dropingly majestical syntactical triple-backflips
+                                                               being performed in such incredible rapid succession within the ever-so-tiny enclosed                         
+                                                               confined space of these 3-parameter function calls in code in any language whilest                          
+                                                               maintaining the perfect balance of yin and yang that exists between repeated calls to                         
+                                                               std::bind and the ever-so-smooth static casting of giant swarms of function pointers, all                         
+                                                               within one line!                          
                                                                                         
 
                          
