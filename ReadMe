@@ -99,9 +99,12 @@ google search should provide numerous examples of this (and if I get time in the
 consider adding a second example class which uses typedefs for the function pointers).
 
 
+
                [And now for the fun section]
+
+
                                              ---------------------
-                                                --  Doubts  --       (plus the lies I tell myself to move beyond doubt)
+                                                --  DOUBTS  --       (plus BONUS: All the 'lies' I tell myself to help ignore the doubt)
                                              ---------------------
   While this concept is cool and all, I have always been a little hesitant to fully commit to it as
   a whole new paradigm of class design and implementation. While as I continue to gain more experience 
@@ -111,14 +114,151 @@ consider adding a second example class which uses typedefs for the function poin
                                                                 skeptical that I have enough mastery over my computer to fully trust my 
                                                                 results. Perhaps if there comes a time when I can access several computers...)
                                                                 
+          
           (DOUBT 1)  
-        Since this technique {to me} seems to provide all the benefits provided by the safety of defensive programming
-           while avoiding the costs of the increased overhead, why have I not seen it more widely utalized, or at least 
-           mentioned in various programming sources. This should be even more true in the last decade because of the excellent 
-           new functionality and availability of the kick-butt modern STL librarys (e.g. 'std::function', lambda expressions,
-           etc...) since C++11 hit the scene.  
+        Since this dynamic behavior technique {to me} seems to match all the benefits provided by the safety of the defensive-
+           programming style whilest simultaniously avoiding the accumlated costs of the increased overhead for each function,
+           why have I not seen this technique more widely utilized (or at least mentioned in various programming sources (StackOverflow, 
+           various programming blogs, within textbooks). If anything, this design should have become even more common in the last decade
+           because of the excellent new functionality plus modern STL libraries (e.g. 'std::function', lambda expressions,
+           etc...) ever since C++11 hit the scene.  
            
           ('Lies' I tell myself about why DOUBT 1 isn't a big deal): 
-        Fortunatly I can convince myself that the syntax for function pointers is scary enough to scare away 99% of the sane 
-           population (an effect widely shared with many a indefinate integrals). 
+        Fortunatly I can convince myself that the traditional syntax for function pointers is scary enough to scare away at least 99%
+           of the sane population (an effect widely shared with indefinate integrals). Another 'lie' I can find comfort in is people tend 
+           to stick to what they know, and it is perfectly fine to get by without ever messing with function pointers. 
+        
+        
+        
+           (DOUBT 2)
+        Function Pointers do not play nice with x86 and x64 architecture. This doubt is based largely off speculation, but I have heard
+           tale of a time long ago, when Pentium processors first hit the market. The Pentium architecture had seperate Integer and
+           Floating-Point hardware pipelines (meaning depending on its type, data was manipulated and managed by physically seperate
+           parts of the CPU hardware). This meant that casting a floating-point value to an integer (or vice-versa) required data to be
+           transfered across different locations within the CPU, which if not done judiciously could lead to massive performance hits. 
+        The current x86/x64-based CPUs in the vast majority of modern computers today are built to be completely backwards compatible with
+           all previous x86 CPUs, so the split integer/floating-point pipelines may still be having some legacy influence on modern CPU
+           architectures. However, this DOUBT most likely has been solved decades ago due to the many generations of CPU hardware since then,
+           thus making it not an issue with modern CPUs, so I will skip the 'Lies' section for this DOUBT. However, it does lead me directly
+           to a similar and perhaps much more real DOUBT...
+           
+           (DOUBT 2.5)
+        Pipelined architectures are built to be highly streamlined. While one instruction is executing, another can be fetched 
+           from memory during the same clock cycle while still another instuction is fetching data and a fourth instruction is 
+           having its result cached. On top of that, many modern CPUs utilize an out-of-order execution model with modern techniques
+           such as branch predicition and speculative execution. On top of all of this, CPUs for a while have been treating data and
+           instructions as completly different entities, even though they are both physically composed of just binary information.
+           Because of how complicated everyone on the internet says caches are, I guess I am going to have to not have as strong of
+           an argument here for my DOUBT 2.5 as I anticipated. Basically what I was going to say to put the final nail in the coffin
+           of DOUBT was that because CPUs treat data and instructions seperatly, using function pointers that get redefined as a program
+           runs must lead to a massive sense of uncertainty for any compiler, and thus will take quite a few optimizations off the table. 
+           The common consenses I have gotten from more experienced programmers (at least based off what they have written on the internet)
+           is that modern compilers are so effective these days that really the best we as mere mortal human programmers can do is write
+           the most uninspiried, bland and austere code possible if we really are interested in having the fastest running programs results.
+           This in and of itself was not something I at first wanted to hear, but I have since come to terms with it being better than 
+           before there were optimizing compilers. There is a reason things such as the demo-scene community exist for programmers who want
+           to achieve the incredible. They just can't expect that sort of skill to be as highly sought after as it was in the old days.
+           
+       I'm rambling... Basically, DOUBT 2.5 boils down to the fact that using fancy tricks of this function-pointer variety is really just
+           accomplishing locking your code out from a large number of extemely desirable modern compiler optimizations, before your code even
+           has a chance to begin compiling. Taking this further, if modern processors really do have speculative-execution & branch-prediction
+           that works as well as it sounds like it works on paper, then really all of those if-statements at the beginning of each function are
+           going to be executed simultaniously, with hardly any noticable drop in performance in the slightest.
+           
+                           [WELL ACTUALLY WHILE WRITING THIS I DID SOME RESEARCH AND IT TURNS OUT FUNCTION POINTERS
+                            ARE TYPICALLY TREATED/STORED AS DATA (RATHER THAN INSTRUCTIONS {WHICH MAKES SENSE BECAUSE
+                            WRITING BACK TO INSTRUCTION MEMORY (by assigning a function pointer) FROM CPU IS A NO-NO})
+                            OR ARE ABSTRACTED AWAY DURING COMPILATION. THUS, I AM GOING TO CALL THIS REBUTAL A 'FIB' 
+                            INSTEAD OF A FULL-FLEDGED LIE]
+                            
+            ('FIB' I tell myself about why DOUBTS 2 & 2.5 aren't big deals): 
+          Well, first off, the internet says so. Second off, see the last 2 sentences of DOUBT 2. 
                                              
+
+           (DOUBT 3)
+       Most programmers these days haven't the slightest clue how to work with function pointers, and thus any code that is written today
+           that uses them is just making things harder to maintain without providing any real gain. 
+           
+           (I don't have a lie to tell myself for DOUBT 3, and in fact this reason alone is probably enough to avoid function pointers)
+           
+           
+           
+                                          [ FINAL SECTION! ]
+ 
+                                             ---------------------
+                                                --   HOPE   --       (plus BONUS: All the 'lies' I tell myself to help ignore the doubt)
+                                             ---------------------
+        The HOPE I have that makes this whole thing worthwhile is the unique solution it can provide to a certain issue I ran into while writing
+            a series of OpenGL_Supporting classes contained within the namespace "ShaderInterface" (and I don't care if you think namespaces must always be lowercase).
+            
+        Let me set up the issue I was encountering, and then explain how using this technique led me to a solution that solved all of my issues while 
+            only creating the sole new issue of the code being a pain-in-the-u-know-what to write. 
+            if using a class as an intermediary
+            between 
+        If you have read this far and are still interested, you can take a look for yourself at my project/repository where I did this very thing,
+        The repository is titled "OpenGL_Windows_Projects". Once there, Open the folder titled "OpenGL_GLFW_Project". In that messy messy folder, 
+        find the following 6 files: 
+        
+                    - "ShaderProgram.h"  and "ShaderProgram.cpp"       This is the code that serves as the public interface for
+                                                                          a large amount of supporting code underneath. Notice however how
+                                                                          in the ShaderProgram class, there is a public member object of type
+                                                                          <UniformLocationInterface> (it should be right above the word 'private'
+                                                                             (and ya ya, I was still unfamiliar with the PIMPL idiom when I wrote this).
+               
+               
+               That will lead us to our next 2 files:
+                                                                      
+                      FIRST, Our Lawyers Have Required Us To Post The Following Disclaimers:  
+                   ++~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~++              +-------------+
+                   |Z|    WARNING                               WARNING                            WARNING   |Z|              | ! WARNING ! |
+                   ++~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~++    +---------+             +----------+
+                   |Z|  IT IS RECOMMENDED THAT THE ELDERLY AND SMALL CHILDREN AVOID LOOKING DIRECTLY AT      |Z|    |  ATTENTION ALL JAVA PROGRAMMERS  |
+                   |Z|      THIS UPCOMING '.cpp' IMPLEMENTATION FILE FOR MORE THAN A FEW SECONDS AT A TIME   |Z|    |      Several recent medical      |
+                   |Z|      TO AVOID IRREPARABLY PERMANENT SCARRING. ALSO THOSE WHO ARE UNABLE TO STAND THE  |Z|    |     studies have demonstrated    |
+                   |Z|      SIGHT OF RAW FUNCTION POINTERS WITHOUT FAINTING ARE ADVISED TO VIEW THESE FILES  |Z|    |     that Java programmers are    |
+                   |Z|      WITH CAUTION!                                                                    |z|    |     especially susceptible to    |
+                   |Z|                               YOU HAVE BEEN WARNED!                                   |Z|    |    the permanent scaring which   |                         
+                   ++=========================================================================================++    | even a single second of indirect |                                              
+                                                                                                                    | exposure to Raw Function Pointers|
+                                                                                                                    | has repeatedly in lab tests been |
+                        +-----------------------------------------------------------------+                         | shown to cause. It is recomended |
+                        |        CAUTION!         CAUTION!     CAUTION!       CAUTION!    |                         |  you evacuate the local address  |
+                        | The Long-Term Effects of Raw Function Pointer Exposure on C#    |                         | space ASAP whenever there is even|
+                        | programmers is currently unknown and a major topic in medical   |                         | the slightest possiblity of a Raw|  
+                        | research. If you are a C# programmer and would like to partici- |                         | Function Pointer exposure event. |
+                        | pate in ongoing medical trials, please consult with your nearest|                         +----------------------------------+
+                        | .NET-approved medical provider. Be aware that participants may  |
+                        | potentially be labeled as "unsafe" and quarentined at any time. |
+                        +-----------------------------------------------------------------+                                                                                           
+NING: RAW FUNCTION POINTERS! HAZMAT SUIT REQUIRED!]                          [WARNING: RAW FUNCTION POINTERS! HAZMAT SUIT REQUIRED!] 
+            ++-------------------------------------------------------------------------------++
+            ||      "UniformLocationInterface.h"   and    "UniformLocationInterface.cpp"     ||
+            ++-------------------------------------------------------------------------------++     
+                 [WARNING: RAW FUNCTION POINTERS! HAZMAT SUIT REQUIRED!]                          [WARNING: RAW FUNCTION POINTERS! HAZMAT SUIT REQUIRED!] 
+
+                                                                                 These 2 files here are the stars of the show. If you have 
+                                                                                        the stomach for it, take this mirror and use it to take
+                                                                                        a look at that ".cpp" implementation file. 
+                                                                               
+                                                                               BE WARNED TO NOT LOOK AT THE IMPLEMENTATION FILE DIRECTLY!
+                                                                                      
+                                                                                     Perhaps no where else in the world would you possibly
+                                                                                        be able to witness such uncanny,
+                                                                                        jaw-dropingly majestical syntactical triple-backflips
+                                                                                        being performed in such incredible rapid succession
+                                                                                        within the ever-so-tiny enclosed confined space 
+                                                                                        in code in any language 
+                                                                                        whilest maintaining the perfect balance 
+                                                                                        
+
+                         
+
+
+
+
+
+
+
+
+
+
