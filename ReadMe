@@ -1,10 +1,14 @@
-[Disclaimer: I am writing this description nearly a year after having finished work on this project]
+       [Feb 2019 Disclaimer: I am writing this description nearly a year after having finished coding this project]
+       
+       (I know, I know, my spelling is probably really bad in this document. I plan to run it through a spell checker 
+          once I tighten up the overall structure and flow)
+
 
 -------------------------------------------------------------------------------------------------------------------------
                                                     ( TL;DR ) 
   I made this project as a proof of concept back when I was still fairly new to designing/implementing my own C++
-classes. This project was built to be a proof of concept for a class which has public member-functions whose 
-implementations would vary based off the object's current state. The intent was to allow for a more elegant and
+classes. This project was built to be a proof of concept based around a class with public member-functions whose 
+implementations can vary based off the object's current state. The intent was to allow for a more elegant and
 efficent way of providing the safety of a 'defensive-programming' design style while not having to resort to an
 excessive reliance on pre-condition checks as part of every member function call. My thought was that it made a lot
 more sense to simply change a set of function pointers once whenever a state-change occured in the object rather than
@@ -17,17 +21,26 @@ reference for implementing similar variations of this concept in my class design
            
        [P.P.S.  Typedefs are for sissies]
 -------------------------------------------------------------------------------------------------------------------------
-
-(* well, really the intent was to avoid unreasonable behavior in leu of displaying reasonable behavior, but I digress) 
-
-                                             --------------------
-                                              --  BACKGROUND  --  
+                                                                                             
+   +-------[Theses 2 footnotes corresponds with the first paragraph in the 'BACKGROUND' section below, 
+   |                       I haven't figured out where to put it yet tho] ----------------------------------------------------+
+   V                                                                                                                          |
+(* well, really the intent was to avoid unreasonable behavior in leu of displaying reasonable behavior, but I digress)--+     |
+                                                                                                                        |     |
+(** well, without limiting myself to only C and/or assembly [or Fortran])  <-------------------------------------------=)=----+
+               W|W                                                                                                      |
+                |                            --------------------                                                       |
+                +-------------------------->  --  BACKGROUND  --   <----------------------------------------------------+
                                              --------------------
                                              
-    Back when I first began making my own solo plunges into the deep murky realm of raw potential that is C++,
-I quickly discovered that to harness the unbridled rampant power that exists in each modern-day processor, I was going
-to need some classes. Thus most of my early experience with C++ (beyond what was taught in undergrad CS) was endemic to
-from-the-ground-up class design and implementation.  one of my early focuses into the language was my natural inclination for myself within the role of "class-designer" was to always take every step I could
+    Back when I first was beginning to make my own solo ventures into the titanically vast, murky abyssal depths of the 
+domain/dominion of sizzling/crackling raw potential that is made possible through C++, I quickly discovered that to have
+any hope of every effectivly harnessing the rampant, ethereal yet unbridled power that exists in the billions of modern-day
+x86-, x64- and ARM-based processors** on earth, I was going to need to code myself some classes. It was for this reason that
+most of my early experience with C++ (beyond what was taught in undergrad CS) was endemic to from the ground-up/scratch class
+design and implementation. 
+
+one of my early focuses into the language was my natural inclination for myself within the role of "class-designer" was to always take every step I could
 think of to assure any code built involving my objects would execute in a reasonable way*
 no matter what someone using my code would try to do with it. As such, the first several dozen C++ classes I designed
 and implemented would zealously follow the 'defensive-programming' design philosophy. To ensure clarity, 'defensive-
@@ -84,3 +97,28 @@ To help with the readability of code within a class defining function pointers t
 functions, it is advised to use a typedef to simplify the function-pointer syntax. A quick 
 google search should provide numerous examples of this (and if I get time in the future I may
 consider adding a second example class which uses typedefs for the function pointers).
+
+
+               [And now for the fun section]
+                                             ---------------------
+                                                --  Doubts  --       (plus the lies I tell myself to move beyond doubt)
+                                             ---------------------
+  While this concept is cool and all, I have always been a little hesitant to fully commit to it as
+  a whole new paradigm of class design and implementation. While as I continue to gain more experience 
+  I can have hope that one day I will have my answers to these concerns*, I still feel it to be valuable 
+  for me to list them here:                               
+                                                          (*I suppose I could just write some code myself and then profile it, but I am
+                                                                skeptical that I have enough mastery over my computer to fully trust my 
+                                                                results. Perhaps if there comes a time when I can access several computers...)
+                                                                
+          (DOUBT 1)  
+        Since this technique {to me} seems to provide all the benefits provided by the safety of defensive programming
+           while avoiding the costs of the increased overhead, why have I not seen it more widely utalized, or at least 
+           mentioned in various programming sources. This should be even more true in the last decade because of the excellent 
+           new functionality and availability of the kick-butt modern STL librarys (e.g. 'std::function', lambda expressions,
+           etc...) since C++11 hit the scene.  
+           
+          ('Lies' I tell myself about why DOUBT 1 isn't a big deal): 
+        Fortunatly I can convince myself that the syntax for function pointers is scary enough to scare away 99% of the sane 
+           population (an effect widely shared with many a indefinate integrals). 
+                                             
