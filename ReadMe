@@ -1,23 +1,63 @@
-[I am writing this description over a year after having finished writing this project with the intent of providing context]
+[Disclaimer: I am writing this description nearly a year after having finished work on this project]
+
+-------------------------------------------------------------------------------------------------------------------------
+                                                    ( TL;DR ) 
+  I made this project as a proof of concept back when I was still fairly new to designing/implementing my own C++
+classes. This project was built to be a proof of concept for a class which has public member-functions whose 
+implementations would vary based off the object's current state. The intent was to allow for a more elegant and
+efficent way of providing the safety of a 'defensive-programming' design style while not having to resort to an
+excessive reliance on pre-condition checks as part of every member function call. My thought was that it made a lot
+more sense to simply change a set of function pointers once whenever a state-change occured in the object rather than
+having to string together a sequence of 'if-statements' to determine state.
+  This completed project wound up functioning exactly as I had imagined it would, and has since served as a handy
+reference for implementing similar variations of this concept in my class designs.
+       
+       [P.S. An additional benefit of this project was it helped me overcome my fear of the dreadful function
+           pointer syntax (this was written before I adopted modern C++1x features/luxeries such as std::function) ]  
+           
+       [P.P.S.  Typedefs are for sissies]
+-------------------------------------------------------------------------------------------------------------------------
+
+(* well, really the intent was to avoid unreasonable behavior in leu of displaying reasonable behavior, but I digress) 
 
                                              --------------------
                                               --  BACKGROUND  --  
                                              --------------------
-  The first several dozen C++ classes I wrote followed a 'defensive-programming' style approach in which
-most of the member functions, upon being called, perform a sequence of 'self-sanity' checks for ensuring
-the state of its calling-object meets all requirements before executing any meaningful logic. Upon failure
-at any point in this sequence of self-checks I was having the object report a unique and highly-detailed 
-error message of what exactly was wrong and then returning. While writing code this way made writing any
-future code which uses these classes a breeze to debug, it quickly was becoming apparent to me that this
-style of coding has several major downsides. 
-  The most acute downside I was aware of at that time was the sheer amount of additional coding required
-on my part to implement even the most basic of functionality; in some cases functions which had a fairly
+                                             
+    Back when I first began making my own solo plunges into the deep murky realm of raw potential that is C++,
+I quickly discovered that to harness the unbridled rampant power that exists in each modern-day processor, I was going
+to need some classes. Thus most of my early experience with C++ (beyond what was taught in undergrad CS) was endemic to
+from-the-ground-up class design and implementation.  one of my early focuses into the language was my natural inclination for myself within the role of "class-designer" was to always take every step I could
+think of to assure any code built involving my objects would execute in a reasonable way*
+no matter what someone using my code would try to do with it. As such, the first several dozen C++ classes I designed
+and implemented would zealously follow the 'defensive-programming' design philosophy. To ensure clarity, 'defensive-
+programming' is carried out by requiring every non-trivial member function (and a large number of the trivial member
+functions to boot) to engage in a comprehensive sequence of 'self-sanity' checks {i.e. 'if-statements'} which serve
+to verify every potential aspect of the calling object's state which might have an impact towards the function's
+execution. This sequence would be an integral part of each function call, which can be a source of much pain if 
+any of the member functions are required as part of the execution of a loop. 
+for ensuring the state of its object met all the necessary pre-conditions
+before the function would execute any meaningful logic. If at any point along this sequence a pre-condition
+failed to be satisfied, I would have the object report a unique and highly-desciptive error message expressing
+details such as:
+       (i)   what exactly went wrong, 
+       (ii)  which function was the source* of the error message,            (* this was before I knew of the "__func__" macro required by the C++ standard)
+       (iii) for especially egregious failures**, a customized often-humorous  
+                self-deprecating message letting me know how badly I had       
+                messed something up.                                         (** this is 99.9% of the reason why the 'default' case in a switch statement exists, right?)
+After encountering a missed pre-condition and announcing the issue, each function would then return without 
+making any change to the object.
+
+    While building each class this way made writing any future code relaint upon these classes a breeze to
+debug, it quickly was becoming apparent to me that this approach to class design had several major downsides. 
+The most acute downside at that time was simply the sheer amount of additional coding*** required on my part  
+to implement even the most basic of functionality; in some cases functions which had a fairly
 redimentrary purpose would require several times as many lines of code for just checking preconditions
 compared with the lines of code required to carry out the actual logic. This issue was made all-the-worse
 by my inexperience towards writing error messages, with a wide veriety of formats and poorly-worded 
 statements 
 
-
+                                                                                             (*** by 'Coding', I mean 'Error Message String Formatting/Writing')
 
 
 writing a unique error message containing for every possible with many of the checks simply being that the object has been properly initialized and 
@@ -25,7 +65,7 @@ hasn't become corrupt),
 
   
                                              ---------------------
-                                              --  Description  --  
+                                              --  Description  --       [Incomplete]
                                              ---------------------
   The purpose of this project is to experiment with implementing a C++ class that has
 public function pointers to its own private member functions. Based off the state of
