@@ -1,3 +1,32 @@
+[I am writing this description over a year after having finished writing this project with the intent of providing context]
+
+                                             --------------------
+                                              --  BACKGROUND  --  
+                                             --------------------
+  The first several dozen C++ classes I wrote followed a 'defensive-programming' style approach in which
+most of the member functions, upon being called, perform a sequence of 'self-sanity' checks for ensuring
+the state of its calling-object meets all requirements before executing any meaningful logic. Upon failure
+at any point in this sequence of self-checks I was having the object report a unique and highly-detailed 
+error message of what exactly was wrong and then returning. While writing code this way made writing any
+future code which uses these classes a breeze to debug, it quickly was becoming apparent to me that this
+style of coding has several major downsides. 
+  The most acute downside I was aware of at that time was the sheer amount of additional coding required
+on my part to implement even the most basic of functionality; in some cases functions which had a fairly
+redimentrary purpose would require several times as many lines of code for just checking preconditions
+compared with the lines of code required to carry out the actual logic. This issue was made all-the-worse
+by my inexperience towards writing error messages, with a wide veriety of formats and poorly-worded 
+statements 
+
+
+
+
+writing a unique error message containing for every possible with many of the checks simply being that the object has been properly initialized and 
+hasn't become corrupt),
+
+  
+                                             ---------------------
+                                              --  Description  --  
+                                             ---------------------
   The purpose of this project is to experiment with implementing a C++ class that has
 public function pointers to its own private member functions. Based off the state of
 the object, the public function pointers can be remapped from amongst the private member
